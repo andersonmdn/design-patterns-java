@@ -6,14 +6,12 @@ import java.math.BigDecimal;
 
 public class DiscountCalculator {
     public BigDecimal calc(Budget budget) {
-        if (budget.getCountItems() > 5) {
-            return budget.getValue().multiply(new BigDecimal("0.1"));
-        }
+        Discount discount = new DiscountAmountGreaterThanFiveItems(
+                new DiscountAmountGreaterThanFiveHundred(
+                        new NoDiscount()
+                )
+        );
 
-        if (budget.getValue().compareTo(new BigDecimal("500")) > 0) {
-            return budget.getValue().multiply(new BigDecimal("0.1"));
-        }
-
-        return BigDecimal.ZERO;
+        return discount.calc(budget);
     }
 }
