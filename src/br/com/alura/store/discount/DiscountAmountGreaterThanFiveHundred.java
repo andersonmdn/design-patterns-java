@@ -9,11 +9,12 @@ public class DiscountAmountGreaterThanFiveHundred extends Discount {
         super(next);
     }
 
-    public BigDecimal calc(Budget budget) {
-        if (budget.getValue().compareTo(new BigDecimal("500")) > 0) {
-            return budget.getValue().multiply(new BigDecimal("0.05"));
-        }
+    public BigDecimal makeCalc(Budget budget) {
+        return budget.getValue().multiply(new BigDecimal("0.05"));
+    }
 
-        return next.calc(budget);
+    @Override
+    public boolean mustApply(Budget budget) {
+        return budget.getValue().compareTo(new BigDecimal("500")) > 0;
     }
 }

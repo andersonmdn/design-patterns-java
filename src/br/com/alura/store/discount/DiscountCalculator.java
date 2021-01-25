@@ -12,6 +12,6 @@ public class DiscountCalculator {
                 )
         );
 
-        return discount.calc(budget);
+        return discount.calculate(budget);
     }
 }
